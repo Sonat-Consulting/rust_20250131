@@ -1,0 +1,86 @@
+# Operating System files
+##########################
+.DS_Store         # macOS
+Thumbs.db         # Windows
+Desktop.ini       # Windows
+
+# Node.js dependencies
+##########################
+node_modules/
+
+# Python
+##########################
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.log
+*.sqlite
+
+# Java
+##########################
+*.class
+*.jar
+*.war
+*.ear
+target/
+
+# Ruby
+##########################
+*.gem
+*.rbc
+.bundle/
+log/
+tmp/
+
+# Visual Studio
+##########################
+.vs/
+.vscode/
+.idea/
+
+# JetBrains IDEs
+##########################
+.idea/
+
+# macOS
+##########################
+*.swp
+*.swo
+
+# Python Virtual Environments
+##########################
+env/
+venv/
+.venv/
+
+# JavaScript (npm, yarn, etc.)
+##########################
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+##########################
+*.log
+
+# Build directories
+##########################
+build/
+dist/
+out/
+
+# Coverage reports
+##########################
+coverage/
+
+# Compiled Python files
+##########################
+*.pyc
+*.pyo
+
+# Application specific
+##########################
+.env            # dotenv files
+*.env
