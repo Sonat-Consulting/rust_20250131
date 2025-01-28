@@ -1,3 +1,4 @@
+use std::sync::Arc;
 use crate::cli_parser::Args;
 use crate::message::Message;
 use anyhow::Error;
@@ -5,7 +6,7 @@ use iroh::NodeId;
 use iroh_gossip::net::GossipSender;
 
 pub async fn broadcast_about_me(
-    sender: &GossipSender,
+    sender: &Arc<GossipSender>,
     args: Args,
     node_id: NodeId,
 ) -> Result<(), Error> {
