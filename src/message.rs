@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 use iroh::NodeId;
 
@@ -5,6 +6,7 @@ use iroh::NodeId;
 pub enum Message {
     AboutMe { from: NodeId, name: String },
     Message { from: NodeId, text: String },
+    AboutUs { names: HashMap<NodeId, String>}
 }
 
 impl Message {

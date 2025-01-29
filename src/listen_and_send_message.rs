@@ -1,10 +1,11 @@
+use std::sync::Arc;
 use crate::print_stuff;
 use anyhow::Error;
 use iroh::NodeId;
 use iroh_gossip::net::GossipSender;
 use crate::message::Message;
 
-pub async fn listen_and_send_message(sender: &GossipSender, node_id: NodeId) -> Result<(), Error> {
+pub async fn listen_and_send_message(sender: &Arc<GossipSender>, node_id: NodeId) -> Result<(), Error> {
     let (line_tx, mut line_rx) = tokio::sync::mpsc::channel(1);
     std::thread::spawn(move || input_loop(line_tx));
 

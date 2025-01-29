@@ -6,6 +6,7 @@ mod subscribe_loop;
 mod ticket;
 mod message;
 
+use std::sync::Arc;
 use crate::broadcast_about_me::broadcast_about_me;
 use crate::cli_parser::parse_cli;
 use crate::listen_and_send_message::listen_and_send_message;
@@ -59,12 +60,14 @@ async fn main() -> Result<()> {
         }
     }
     let (sender, receiver) = gossip.subscribe_and_join(topic, node_ids).await?.split();
+    let sender = Arc::new(sender);
 
     print_stuff::print_info("connected!".to_string());
 
     broadcast_about_me(&sender, args, endpoint.node_id()).await?;
 
-    tokio::spawn(subscribe_loop::subscribe_loop(receiver));
+    let sender_clone = Arc::clone(&sender);
+    tokio::spawn(subscribe_loop::subscribe_loop(receiver, sender_clone));
 
     listen_and_send_message(&sender, endpoint.node_id()).await?;
 

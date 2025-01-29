@@ -1,10 +1,11 @@
 use crate::print_stuff;
 use futures_lite::StreamExt;
-use iroh_gossip::net::{Event, GossipEvent, GossipReceiver};
+use iroh_gossip::net::{Event, GossipEvent, GossipReceiver, GossipSender};
 use std::collections::HashMap;
+use std::sync::Arc;
 use crate::message::Message;
 
-pub async fn subscribe_loop(mut receiver: GossipReceiver) -> anyhow::Result<()> {
+pub async fn subscribe_loop(mut receiver: GossipReceiver, sender: Arc<GossipSender>) -> anyhow::Result<()> {
     let mut names = HashMap::new();
 
     while let Some(event) = receiver.try_next().await? {
@@ -16,7 +17,14 @@ pub async fn subscribe_loop(mut receiver: GossipReceiver) -> anyhow::Result<()> 
                         "{} is now knows as {}",
                         from.fmt_short(),
                         name
-                    ))
+                    ));
+                    sender.broadcast(Message::AboutUs {  names: names.clone() }.to_vec().into()).await?;
+                }
+                Message::AboutUs { names: incoming_names } => {
+                    for (key, val)  in incoming_names {
+                        names.insert(key, val);
+
+                    }
                 }
                 Message::Message { from, text } => {
                     let name = names
