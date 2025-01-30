@@ -16,8 +16,6 @@ sending av meldinger og `iroh-docs` for realtime multiwriting ( google docs feks
 
 I dag skal vi bygge en chat basert på `iroh-gossip`
 
-## Ticket
-Ticket er en addresse som iroh bruker for å få kontakt med den som startet chatrommet.
 
 # Oppgaver
 1. cli_parser.rs

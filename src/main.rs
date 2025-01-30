@@ -64,12 +64,12 @@ async fn main() -> Result<()> {
 
     print_stuff::print_info("connected!".to_string());
 
-    broadcast_about_me(&sender, args, endpoint.node_id()).await?; // comment me out
+    broadcast_about_me(&sender, args, endpoint.node_id()).await?;
 
     let sender_clone = Arc::clone(&sender);
-    tokio::spawn(subscribe_loop::subscribe_loop(receiver, sender_clone)); // comment me out
+    // tokio::spawn(subscribe_loop::subscribe_loop(receiver, sender_clone)); // remove this comment when starting on subscribe_loop
 
-    listen_and_send_message(&sender, endpoint.node_id()).await?; // comment me out
+    listen_and_send_message(&sender, endpoint.node_id()).await?;
 
     router.shutdown().await?;
 

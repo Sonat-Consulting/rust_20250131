@@ -19,9 +19,6 @@ pub struct Args {
 #[derive(Parser, Debug)]
 pub enum Command {
     Open,
-    Join {
-        ticket: String
-    }
 }
 
 pub fn parse_cli() -> Result<(Args, TopicId, Vec<NodeAddr>), Error> {
@@ -39,14 +36,14 @@ pub fn parse_cli() -> Result<(Args, TopicId, Vec<NodeAddr>), Error> {
             Ok((args, topic, vec![]))
         }
         // Adjust the enum Command so that the line below works.
-        Command::Join { ticket } => {
-            let Ticket { topic, nodes } = Ticket::from_str(ticket)?;
-            print_stuff::print_info(format!(
-                "{} {}",
-                "joining chat room for topic ",
-                topic.to_string()
-            ));
-            Ok((args, topic, nodes))
-        }
+        // Command::Join { ticket } => {
+        //     let Ticket { topic, nodes } = Ticket::from_str(ticket)?;
+        //     print_stuff::print_info(format!(
+        //         "{} {}",
+        //         "joining chat room for topic ",
+        //         topic.to_string()
+        //     ));
+        //     Ok((args, topic, nodes))
+        // }
     }
 }
