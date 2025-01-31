@@ -36,6 +36,7 @@ pub fn parse_cli() -> Result<(Args, TopicId, Vec<NodeAddr>), Error> {
             Ok((args, topic, vec![]))
         }
         // Adjust the enum Command so that the line below works.
+        // You should see "connected!" in the console if it works.
         // Command::Join { ticket } => {
         //     let Ticket { topic, nodes } = Ticket::from_str(ticket)?;
         //     print_stuff::print_info(format!(

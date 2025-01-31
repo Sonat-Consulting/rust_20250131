@@ -14,10 +14,11 @@ pub async fn listen_and_send_message(sender: &Arc<GossipSender>, node_id: NodeId
     // If text has been entered then it should create a message.
     // Make sure to implement the variant Message::Message
     // and broadcast it using sender.broadcast(message.to_vec().into()).await?;
-    // After broadcast it should print the message it sent.
+    // After broadcast it should print the message it sent. Look in print_stuff
     
     // When this function is complete you should be able to send messages to another topic
-    // cargo run -- -n MyName join <ticket> 
+    // cargo run -- -n MyName join <ticket>
+    // then write something and hit enter
     Ok(())
 
 }

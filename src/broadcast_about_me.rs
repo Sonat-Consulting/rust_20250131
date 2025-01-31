@@ -21,6 +21,7 @@ pub async fn broadcast_about_me(
     // To broadcast the message you should use: sender.broadcast(message.to_vec().into()).await?;
 
     // Needed to broadcast message before all other assignments are done.
+    // The receiving end should see a message like: node_id X is now known as <YourName>
     // sleep(Duration::from_secs(3)).await;
     Ok(())
 }
